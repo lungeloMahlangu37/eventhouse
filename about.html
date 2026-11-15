@@ -1,0 +1,1068 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About Us | The Event House</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --gold: #b89555;
+    --dark-gold: #94733c;
+    --black: #171717;
+    --cream: #f8f5ef;
+    --white: #ffffff;
+    --grey: #777777;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    line-height: 1.7;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.section-label {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+}
+
+.gold-line {
+    width: 65px;
+    height: 3px;
+    background: var(--gold);
+    margin: 25px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 27px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.btn-gold {
+    background: var(gold);
+    color: white;
+}
+
+.btn-gold:hover {
+    background: var(dark-gold);
+    transform: translateY(-3px);
+}
+
+.btn-dark {
+    background: var(black);
+    color: white;
+}
+
+.btn-dark:hover {
+    background: var(--gold);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.header {
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+.navbar {
+    max-width: 1300px;
+    min-height: 90px;
+    margin: auto;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.logo span {
+    color: var(gold);
+    font-size: 12px;
+    display: block;
+    letter-spacing: 4px;
+}
+
+.logo small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    color: var(gold);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(gold);
+}
+
+.nav-button {
+    background: var(gold);
+    color: white !important;
+    padding: 13px 23px;
+}
+
+.nav-button:hover {
+    background: var(black);
+}
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* =========================
+   PAGE HERO
+========================= */
+
+.about-hero {
+    min-height: 440px;
+    position: relative;
+
+    background:
+    url('fouth.jpg?auto=format&fit=crop&w=2000&q=90')
+    center/cover no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.about-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+}
+
+.about-hero-content {
+    position: relative;
+    padding: 40px 20px;
+}
+
+.about-hero h1 {
+    font-size: clamp(45px, 6vw, 70px);
+    line-height: 1.2;
+}
+
+.about-hero h1 span {
+    color: var(--gold);
+}
+
+.about-hero p {
+    margin-top: 15px;
+    color: #eeeeee;
+    font-size: 14px;
+}
+
+.breadcrumb {
+    margin-top: 25px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.breadcrumb a {
+    color: var(--gold);
+}
+
+/* =========================
+   INTRODUCTION
+========================= */
+
+.intro-section {
+    max-width: 1300px;
+    margin: auto;
+    padding: 110px 7%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 75px;
+    align-items: center;
+}
+
+.intro-images {
+    position: relative;
+    padding-right: 35px;
+    padding-bottom: 35px;
+}
+
+.intro-images img {
+    height: 500px;
+    position: relative;
+    z-index: 1;
+}
+
+.image-decoration {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    right: 0;
+    bottom: 0;
+    border: 3px solid var(--gold);
+}
+
+.intro-content h2 {
+    font-size: clamp(35px, 4vw, 49px);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.intro-content h2 span {
+    color: var(--gold);
+}
+
+.intro-content p:not(.section-label) {
+    color: var(--grey);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   STORY SECTION
+========================= */
+
+.story-section {
+    background: white;
+    padding: 100px 7%;
+}
+
+.story-container {
+    max-width: 1150px;
+    margin: auto;
+    text-align: center;
+}
+
+.story-container h2 {
+    font-size: clamp(35px, 4vw, 48px);
+    margin-bottom: 25px;
+}
+
+.story-container h2 span {
+    color: var(--gold);
+}
+
+.story-container > p:not(.section-label) {
+    max-width: 850px;
+    margin: auto;
+    color: var(--grey);
+    font-size: 15px;
+}
+
+/* =========================
+   MISSION & VISION
+========================= */
+
+.mission-section {
+    padding: 100px 7%;
+}
+
+.mission-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.mission-card {
+    padding: 50px 40px;
+    background: white;
+    border-bottom: 4px solid var(--gold);
+}
+
+.mission-icon {
+    font-size: 35px;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.mission-card h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.mission-card p {
+    color: var(--grey);
+    font-size: 14px;
+}
+
+/* =========================
+   CORE VALUES
+========================= */
+
+.values-section {
+    background: var(--black);
+    color: white;
+    padding: 100px 7%;
+}
+
+.values-heading {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.values-heading h2 {
+    font-size: clamp(35px, 4vw, 48px);
+}
+
+.values-heading h2 span {
+    color: var(--gold);
+}
+
+.values-grid {
+    max-width: 1250px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.value-card {
+    padding: 30px 22px;
+    border: 1px solid #444;
+    transition: 0.3s;
+}
+
+.value-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-7px);
+}
+
+.value-number {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+}
+
+.value-card h3 {
+    font-size: 22px;
+    margin: 15px 0;
+}
+
+.value-card p {
+    color: #bbbbbb;
+    font-size: 13px;
+}
+
+/* =========================
+   EXPERIENCE SECTION
+========================= */
+
+.experience-section {
+    padding: 100px 7%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.experience-image img {
+    height: 480px;
+}
+
+.experience-content h2 {
+    font-size: clamp(35px, 4vw, 48px);
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.experience-content h2 span {
+    color: var(--gold);
+}
+
+.experience-content p {
+    color: var(--grey);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* =========================
+   CTA SECTION
+========================= */
+
+.cta-section {
+    padding: 100px 7%;
+    text-align: center;
+    background: #171717;
+    color: white;
+}
+
+.cta-section h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    margin-bottom: 20px;
+}
+
+.cta-section h2 span {
+    color: var(--gold);
+}
+
+.cta-section p:not(.section-label) {
+    color: #cccccc;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-size: 14px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    background: #101010;
+    color: white;
+    padding: 75px 7% 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 45px;
+    max-width: 1300px;
+    margin: auto;
+}
+
+.footer h2 {
+    font-size: 25px;
+}
+
+.footer-about span {
+    display: block;
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin: 10px 0 20px;
+}
+
+.footer h3 {
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.footer p,
+.footer a {
+    font-size: 13px;
+    color: #aaaaaa;
+}
+
+.footer-grid > div:not(:first-child) a {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.footer a:hover {
+    color: var(--gold);
+}
+
+.footer-bottom {
+    max-width: 1300px;
+    margin: 55px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media(max-width: 1000px) {
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media(max-width: 768px) {
+
+    .navbar {
+        min-height: 75px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        padding: 25px 7%;
+        background: white;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-button {
+        text-align: center;
+    }
+
+    .intro-section,
+    .experience-section {
+        grid-template-columns: 1fr;
+        padding: 75px 7%;
+        gap: 45px;
+    }
+
+    .intro-images img,
+    .experience-image img {
+        height: 380px;
+    }
+
+    .mission-section,
+    .values-section {
+        padding: 75px 6%;
+    }
+
+    .mission-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-hero {
+        min-height: 370px;
+    }
+
+}
+
+@media(max-width: 500px) {
+
+    .values-grid,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mission-card {
+        padding: 35px 25px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<header class="header">
+
+<nav class="navbar">
+
+<a href="index.php" class="logo">
+    <span>THE</span>
+    EVENT HOUSE
+    <small>PLAN • CREATE • CELEBRATE</small>
+</a>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+    ☰
+</button>
+
+<ul class="nav-links" id="navLinks">
+
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html" class="active">About Us</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="gallery.html">Gallery</a></li>
+<li><a href="contacts.html">Contact Us</a></li>
+<li><a href="contact.html" class="nav-button">Book an Event</a></li>
+
+</ul>
+
+</nav>
+</header>
+
+
+<!-- PAGE HERO -->
+
+<section class="about-hero">
+
+<div class="about-hero-content">
+
+<p class="section-label">GET TO KNOW US</p>
+
+<h1>About <span>Our House.</span></h1>
+
+<p>
+Discover the passion, creativity and dedication
+behind The Event House.
+</p>
+
+<div class="breadcrumb">
+<a href="index.php">HOME</a> &nbsp; / &nbsp; ABOUT US
+</div>
+
+</div>
+
+</section>
+
+
+<!-- INTRODUCTION -->
+
+<section class="intro-section">
+
+<div class="intro-images">
+
+    <img src="fifth.jpg?auto=format&fit=crop&w=1000&q=85"
+alt="Elegant wedding event">
+
+<div class="image-decoration"></div>
+
+</div>
+
+<div class="intro-content">
+
+<p class="section-label">WHO WE ARE</p>
+
+<h2>We Create More Than Events. We Create <span>Experiences.</span></h2>
+
+<div class="gold-line"></div>
+
+<p>
+Welcome to The Event House, where creativity meets
+organisation and every celebration becomes an opportunity
+to create something extraordinary.
+</p>
+
+<p>
+We are an event services business focused on helping
+individuals, families and organisations bring their
+celebrations and special occasions to life.
+</p>
+
+<p>
+From elegant weddings and beautiful birthday celebrations
+to professional corporate functions, we approach every
+event with care, creativity and attention to detail.
+</p>
+
+<a href="services.php" class="btn btn-dark">
+Explore Our Services
+</a>
+
+</div>
+
+</section>
+
+
+<!-- OUR STORY -->
+
+<section class="story-section">
+
+<div class="story-container">
+
+<p class="section-label">OUR STORY</p>
+
+<h2>Every Great Celebration Begins With A <span>Vision.</span></h2>
+
+<p>
+The Event House was built around a simple belief:
+special moments deserve thoughtful planning and
+beautiful execution. We understand that every event
+has its own purpose, personality and story.
+
+Our approach is to listen to our clients, understand
+their expectations and help transform their ideas
+into memorable experiences.
+
+Whether it is an intimate celebration or a large
+gathering, we aim to make the journey enjoyable,
+organised and meaningful from beginning to end.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- MISSION AND VISION -->
+
+<section class="mission-section">
+
+<div class="section-heading">
+
+<p class="section-label">OUR PURPOSE</p>
+
+<h2>What Drives <span>Us.</span></h2>
+
+<p>Our purpose guides every event we plan and every
+experience we help create.</p>
+
+</div>
+
+<div class="mission-grid">
+
+<div class="mission-card">
+
+<div class="mission-icon">✦</div>
+
+<h3>Our Mission</h3>
+
+<p>
+To deliver creative, well-organised and memorable
+event experiences through professional planning,
+personalised service and attention to detail.
+We strive to understand every client's vision
+and turn their ideas into meaningful celebrations.
+</p>
+
+</div>
+
+<div class="mission-card">
+
+<div class="mission-icon">✧</div>
+
+<h3>Our Vision</h3>
+
+<p>
+To become a trusted and recognised event services
+brand in Eswatini, known for creativity, elegance,
+reliability and the ability to transform ordinary
+occasions into extraordinary memories.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CORE VALUES -->
+
+<section class="values-section">
+
+<div class="values-heading">
+
+<p class="section-label">WHAT WE BELIEVE IN</p>
+
+<h2>Our Core <span>Values.</span></h2>
+
+</div>
+
+<div class="values-grid">
+
+<div class="value-card">
+
+<div class="value-number">01</div>
+
+<h3>Creativity</h3>
+
+<p>
+We embrace fresh ideas and innovative approaches
+to make every event unique.
+</p>
+
+</div>
+
+<div class="value-card">
+
+<div class="value-number">02</div>
+
+<h3>Excellence</h3>
+
+<p>
+We aim for quality in every detail, from planning
+to the final presentation.
+</p>
+
+</div>
+
+<div class="value-card">
+
+<div class="value-number">03</div>
+
+<h3>Reliability</h3>
+
+<p>
+We value trust, commitment and delivering on
+the expectations of our clients.
+</p>
+
+</div>
+
+<div class="value-card">
+
+<div class="value-number">04</div>
+
+<h3>Personalisation</h3>
+
+<p>
+We respect that every client and celebration
+has its own identity and needs.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- OUR APPROACH -->
+
+<section class="experience-section">
+
+<div class="experience-image">
+
+    <img src="ten.jpg?auto=format&fit=crop&w=1000&q=85"
+alt="Professionally organised event">
+
+</div>
+
+<div class="experience-content">
+
+<p class="section-label">THE EVENT HOUSE EXPERIENCE</p>
+
+<h2>Your Vision. Our Creativity. One <span>Beautiful Experience.</span></h2>
+
+<p>
+We believe planning an event should be exciting,
+not overwhelming. That is why we focus on
+understanding your needs and helping you make
+the right decisions throughout the process.
+</p>
+
+<p>
+We combine thoughtful planning, creative ideas
+and attention to detail to help deliver events
+that reflect your personality, purpose and expectations.
+</p>
+
+<a href="contact.php" class="btn btn-dark">
+Let's Plan Together
+</a>
+
+</div>
+
+</section>
+
+
+<!-- CALL TO ACTION -->
+
+<section class="cta-section">
+
+<p class="section-label">LET'S CREATE SOMETHING SPECIAL</p>
+
+<h2>Let's Make Your Next Event <span>Unforgettable.</span></h2>
+
+<p>
+Every memorable celebration starts with an idea.
+Tell us about yours and let's bring it to life.
+</p>
+
+<a href="contact.php" class="btn btn-gold">
+Start Planning Your Event
+</a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<div class="footer-grid">
+
+<div class="footer-about">
+
+<h2>THE EVENT HOUSE</h2>
+
+<span>PLAN • CREATE • CELEBRATE</span>
+
+<p>
+Creating beautiful celebrations and unforgettable
+experiences. Your event, our priority.
+</p>
+
+</div>
+
+<div>
+
+<h3>Quick Links</h3>
+
+<a href="index.php">Home</a>
+<a href="about.php">About Us</a>
+<a href="services.php">Services</a>
+<a href="gallery.php">Gallery</a>
+<a href="contact.php">Contact Us</a>
+
+</div>
+
+<div>
+
+<h3>Our Services</h3>
+
+<a href="services.php">Weddings</a>
+<a href="services.php">Corporate Events</a>
+<a href="services.php">Birthdays</a>
+<a href="services.php">Venue Hire</a>
+<a href="services.php">Event Styling</a>
+
+</div>
+
+<div>
+
+<h3>Get In Touch</h3>
+
+<p>Eswatini</p>
+<p>Contact us for event enquiries.</p>
+
+<a href="contact.php">Send An Enquiry</a>
+
+<a href="https://wa.me/26879679538" target="_blank">
+WhatsApp Us
+</a>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<p>
+© <?php echo date("Y"); ?> The Event House. All Rights Reserved.
+</p>
+
+<p>Plan • Create • Celebrate</p>
+
+</div>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+const menuToggle = document.getElementById("menuToggle");
+
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", function() {
+
+    navLinks.classList.toggle("show");
+
+    menuToggle.textContent =
+        navLinks.classList.contains("show") ? "✕" : "☰";
+
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", function() {
+
+        navLinks.classList.remove("show");
+
+        menuToggle.textContent = "☰";
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

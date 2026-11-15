@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact & Booking | The Event House</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --gold: #b89555;
+    --dark: #171613;
+    --cream: #f8f5ef;
+    --grey: #77736c;
+    --white: #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+}
+
+a { text-decoration: none; color: inherit; }
+
+header {
+    background: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 700;
+}
+.logo span, .footer-brand span { color: var(--gold); }
+
+nav { display: flex; align-items: center; gap: 28px; }
+nav a { font-size: 13px; font-weight: 600; }
+nav a:hover, nav a.active { color: var(--gold); }
+
+.nav-btn {
+    background: var(--dark);
+    color: white;
+    padding: 13px 22px;
+}
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.hero {
+    min-height: 350px;
+    background:
+        linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+        url('seven.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 40px 20px;
+}
+.hero p {
+    color: #e5c98f;
+    font-size: 12px;
+    letter-spacing: 5px;
+    margin-bottom: 18px;
+}
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 58px;
+    font-weight: 500;
+}
+.hero h1 span { color: #e5c98f; }
+.hero .subtitle { margin-top: 15px; font-size: 14px; }
+
+.intro { text-align: center; padding: 70px 8% 40px; }
+.section-label {
+    color: var(--gold);
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.intro h2 span { color: var(--gold); }
+.intro p {
+    color: var(--grey);
+    line-height: 1.8;
+    max-width: 700px;
+    margin: auto;
+}
+
+.contact-section { padding: 40px 7% 100px; }
+.contact-container {
+    max-width: 1250px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 0.8fr 1.5fr;
+    gap: 40px;
+    align-items: start;
+}
+.contact-info {
+    background: var(--dark);
+    color: white;
+    padding: 45px 35px;
+}
+.contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+.contact-info > p {
+    color: #c2beb6;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+.info-item { margin-bottom: 30px; }
+.info-item h3 {
+    color: var(--gold);
+    font-size: 13px;
+    margin-bottom: 9px;
+}
+.info-item p { color: #d6d2cb; font-size: 14px; line-height: 1.8; }
+
+.whatsapp-link {
+    display: inline-block;
+    margin-top: 15px;
+    background: #218c55;
+    padding: 13px 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.booking-form {
+    background: white;
+    padding: 45px;
+    box-shadow: 0 8px 35px rgba(0,0,0,.05);
+}
+.booking-form h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+.form-description {
+    color: var(--grey);
+    font-size: 14px;
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.form-group { margin-bottom: 22px; }
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dedbd4;
+    background: #fdfcf9;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    transition: .3s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--gold);
+}
+.form-group textarea { height: 120px; resize: vertical; }
+.required { color: #c0392b; }
+
+.submit-btn {
+    width: 100%;
+    border: none;
+    background: var(--dark);
+    color: white;
+    padding: 17px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+}
+.submit-btn:hover { background: #218c55; }
+.form-note {
+    color: var(--grey);
+    font-size: 11px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+footer {
+    background: var(--dark);
+    color: white;
+    padding: 60px 7% 25px;
+}
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+.footer-brand h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+.footer-brand p {
+    color: #aaa69d;
+    font-size: 13px;
+    line-height: 1.9;
+    max-width: 350px;
+}
+.footer-column h3 {
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.footer-column a {
+    display: block;
+    color: #aaa69d;
+    font-size: 13px;
+    margin-bottom: 13px;
+}
+.footer-column a:hover { color: white; }
+.footer-bottom {
+    border-top: 1px solid #383630;
+    margin-top: 45px;
+    padding-top: 22px;
+    text-align: center;
+    color: #aaa69d;
+    font-size: 12px;
+}
+
+@media(max-width: 900px) {
+    .contact-container { grid-template-columns: 1fr; }
+}
+@media(max-width: 700px) {
+    header { padding: 17px 5%; }
+    .logo { font-size: 22px; }
+    .menu-btn { display: block; }
+    nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 25px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+    }
+    nav.show { display: flex; }
+    .hero { min-height: 300px; }
+    .hero h1 { font-size: 42px; }
+    .intro h2 { font-size: 32px; }
+    .contact-section { padding: 25px 5% 65px; }
+    .contact-info, .booking-form { padding: 30px 22px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .footer-content { grid-template-columns: 1fr; gap: 35px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <a href="index.html" class="logo">THE EVENT <span>HOUSE.</span></a>
+    <button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Open navigation">☰</button>
+    <nav id="navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contacts.html" class="active">Contact Us</a>
+        <a href="quotation.html" class="nav-btn active">Request a Quote</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div>
+        <p>LET'S CREATE SOMETHING SPECIAL</p>
+        <h1>Contact <span>Us.</span></h1>
+        <div class="subtitle">Tell us about your event. Let's make it unforgettable.</div>
+    </div>
+</section>
+
+<section class="intro">
+    <div class="section-label">GET IN TOUCH</div>
+    <h2>Let's Start <span>Planning.</span></h2>
+    <p>
+        Whether you are planning a wedding, corporate function,
+        birthday celebration or private event, we would love to hear
+        from you. Complete the enquiry form and send your request
+        directly to us through WhatsApp.
+    </p>
+</section>
+
+<section class="contact-section">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p>Have questions or need assistance with your event? Get in touch with The Event House.</p>
+
+            <div class="info-item">
+                <h3>OUR BUSINESS</h3>
+                <p>The Event House</p>
+                <p>Eswatini</p>
+            </div>
+
+            <div class="info-item">
+                <h3>EMAIL ADDRESS</h3>
+                <p>thandomnguni767@gmail.com</p>
+            </div>
+
+            <div class="info-item">
+                <h3>WHATSAPP</h3>
+                <p>Contact us directly through WhatsApp.</p>
+                <a class="whatsapp-link" href="https://wa.me/26879679538" target="_blank" rel="noopener">
+                    CHAT ON WHATSAPP
+                </a>
+            </div>
+
+            <div class="info-item">
+                <h3>BUSINESS HOURS</h3>
+                <p>Monday – Friday</p>
+                <p>08:00 – 17:00</p>
+            </div>
+        </div>
+
+        <div class="booking-form" id="booking">
+            <h2>Book Your Event</h2>
+            <p class="form-description">
+                Complete the form below. Your booking details will be placed into a WhatsApp message for our consultant.
+            </p>
+
+            <form id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event_type">Type of Event <span class="required">*</span></label>
+                        <select id="event_type" name="event_type" required>
+                            <option value="">Select event type</option>
+                            <option>Wedding</option>
+                            <option>Corporate Event</option>
+                            <option>Birthday Celebration</option>
+                            <option>Private Event</option>
+                            <option>Graduation</option>
+                            <option>Baby Shower</option>
+                            <option>Venue Hire</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="event_date">Event Date <span class="required">*</span></label>
+                        <input type="date" id="event_date" name="event_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Event Location <span class="required">*</span></label>
+                        <input type="text" id="location" name="location" placeholder="Where will the event take place?" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guests">Expected Number of Guests <span class="required">*</span></label>
+                        <input type="number" id="guests" name="guests" min="1" placeholder="e.g. 100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Estimated Budget</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select your budget</option>
+                            <option>E1,000 - E5,000</option>
+                            <option>E5,000 - E10,000</option>
+                            <option>E10,000 - E25,000</option>
+                            <option>E25,000 - E50,000</option>
+                            <option>E50,000 - E100,000</option>
+                            <option>Above E100,000</option>
+                            <option>Not yet decided</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Additional Information</label>
+                    <textarea id="message" name="message" placeholder="Tell us more about your event, theme, preferences or special requirements..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">SEND BOOKING ENQUIRY VIA WHATSAPP →</button>
+                <p class="form-note">
+                    WhatsApp will open with your booking details. Please press Send in WhatsApp to deliver your enquiry.
+                    Sending an enquiry does not confirm your booking.
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h2>THE EVENT <span>HOUSE.</span></h2>
+            <p>Your Event, Our Priority. Creating beautiful experiences and unforgettable memories through thoughtful planning and exceptional service.</p>
+        </div>
+        <div class="footer-column">
+            <h3>QUICK LINKS</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contacts.html">Contact</a>
+        </div>
+        <div class="footer-column">
+            <h3>CONTACT</h3>
+            <a href="https://wa.me/26879679538" target="_blank" rel="noopener">WhatsApp Consultant</a>
+            <a href="thandomnguni767@gmail.com">Email Us</a>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 The Event House. All rights reserved.</div>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navigation").classList.toggle("show");
+}
+
+// Prevent customers from choosing a date in the past.
+const eventDateInput = document.getElementById("event_date");
+const today = new Date();
+const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+    .toISOString().split("T")[0];
+eventDateInput.min = localToday;
+
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (!this.reportValidity()) {
+        return;
+    }
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const eventType = document.getElementById("event_type").value;
+    const eventDate = document.getElementById("event_date").value;
+    const location = document.getElementById("location").value.trim();
+    const guests = document.getElementById("guests").value;
+    const budget = document.getElementById("budget").value || "Not specified";
+    const message = document.getElementById("message").value.trim() || "No additional message";
+
+    const bookingMessage =
+        "NEW EVENT BOOKING ENQUIRY - THE EVENT HOUSE\n\n" +
+        "CUSTOMER DETAILS\n" +
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Phone: " + phone + "\n\n" +
+        "EVENT DETAILS\n" +
+        "Event Type: " + eventType + "\n" +
+        "Event Date: " + eventDate + "\n" +
+        "Location: " + location + "\n" +
+        "Number of Guests: " + guests + "\n" +
+        "Estimated Budget: " + budget + "\n\n" +
+        "Additional Information:\n" + message + "\n\n" +
+        "Please contact me to discuss this booking.";
+
+    const whatsappNumber = "26879679538";
+    const whatsappURL = "https://wa.me/" + whatsappNumber +
+        "?text=" + encodeURIComponent(bookingMessage);
+
+    window.open(whatsappURL, "_blank");
+});
+</script>
+</body>
+</html>

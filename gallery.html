@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore The Event House gallery of weddings, corporate events, birthdays and private celebrations.">
+<title>Gallery | The Event House</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --gold: #b89555;
+    --gold-light: #e5c98f;
+    --dark: #171613;
+    --cream: #f8f5ef;
+    --grey: #77736c;
+    --white: #fff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--dark); }
+a { text-decoration:none; color:inherit; }
+button { font:inherit; }
+
+/* NAVIGATION */
+header {
+    background:var(--white); padding:18px 7%; display:flex;
+    justify-content:space-between; align-items:center; position:sticky;
+    top:0; z-index:1000; box-shadow:0 2px 15px rgba(0,0,0,.06);
+}
+.logo { font-family:'Playfair Display',serif; font-size:27px; font-weight:700; }
+.logo span, .footer-brand span { color:var(--gold); }
+nav { display:flex; align-items:center; gap:28px; }
+nav a { font-size:13px; font-weight:600; transition:.3s; }
+nav a:hover, nav a.active { color:var(--gold); }
+.nav-btn { background:var(--dark); color:white; padding:13px 22px; }
+.menu-btn { display:none; font-size:27px; background:none; border:0; cursor:pointer; }
+
+/* HERO */
+.page-hero {
+    min-height:420px; padding:70px 7%;
+    background:linear-gradient(rgba(0,0,0,.58),rgba(0,0,0,.62)),url('seven.jpg');
+    background-size:cover; background-position:center;
+    display:flex; justify-content:center; align-items:center; text-align:center; color:white;
+}
+.hero-content p { color:var(--gold-light); letter-spacing:5px; font-size:12px; margin-bottom:20px; }
+.hero-content h1 { font-family:'Playfair Display',serif; font-size:clamp(44px,7vw,68px); font-weight:500; }
+.hero-content h1 span { color:var(--gold-light); }
+.hero-content .subtitle { margin:18px auto 0; font-size:15px; line-height:1.8; max-width:620px; }
+
+/* INTRO */
+.intro { text-align:center; padding:82px 10% 42px; }
+.section-label { color:var(--gold); font-size:12px; letter-spacing:4px; font-weight:700; margin-bottom:18px; }
+.intro h2, .featured-copy h2, .cta h2 {
+    font-family:'Playfair Display',serif; font-size:clamp(32px,4vw,45px); font-weight:500; margin-bottom:20px;
+}
+.intro h2 span, .featured-copy h2 span { color:var(--gold); }
+.intro p { color:var(--grey); max-width:750px; margin:auto; line-height:1.9; font-size:15px; }
+
+/* GALLERY FILTERS */
+.gallery-section { padding:25px 7% 95px; max-width:1550px; margin:auto; }
+.filters { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-bottom:42px; }
+.filter-btn {
+    border:1px solid #d8d0c1; background:transparent; color:var(--dark);
+    padding:12px 23px; font-size:12px; font-weight:600; cursor:pointer; transition:.3s;
+}
+.filter-btn:hover, .filter-btn.active { background:var(--dark); color:white; border-color:var(--dark); }
+
+/* MASONRY-STYLE GALLERY */
+.gallery-grid { columns:3 270px; column-gap:20px; }
+.gallery-item {
+    position:relative; break-inside:avoid; margin:0 0 20px; overflow:hidden;
+    cursor:pointer; background:#ddd; border-radius:3px; min-height:240px;
+}
+.gallery-item:nth-child(3n+1) { height:350px; }
+.gallery-item:nth-child(3n+2) { height:270px; }
+.gallery-item:nth-child(3n) { height:310px; }
+.gallery-item img { width:100%; height:100%; display:block; object-fit:cover; transition:transform .65s; }
+.gallery-item:hover img { transform:scale(1.07); }
+.gallery-overlay {
+    position:absolute; inset:0; background:linear-gradient(transparent 35%,rgba(0,0,0,.82));
+    display:flex; flex-direction:column; justify-content:flex-end; padding:25px;
+    color:white; opacity:0; transition:.35s;
+}
+.gallery-item:hover .gallery-overlay, .gallery-item:focus-within .gallery-overlay { opacity:1; }
+.gallery-overlay span { color:var(--gold-light); font-size:11px; letter-spacing:2px; margin-bottom:8px; }
+.gallery-overlay h3 { font-family:'Playfair Display',serif; font-size:23px; font-weight:500; }
+.gallery-item.hidden { display:none; }
+
+/* FEATURED INSPIRATION */
+.featured {
+    display:grid; grid-template-columns:1.05fr .95fr; background:#fff;
+    margin:0 7% 95px; min-height:390px;
+}
+.featured-image { min-height:390px; overflow:hidden; }
+.featured-image img { width:100%; height:100%; object-fit:cover; display:block; }
+.featured-copy { padding:55px 8%; align-self:center; }
+.featured-copy p { color:var(--grey); line-height:1.9; font-size:14px; margin-bottom:25px; }
+.featured-copy a, .cta a {
+    display:inline-block; background:var(--dark); color:white; padding:15px 28px;
+    font-size:12px; font-weight:700; letter-spacing:1px; transition:.3s;
+}
+.featured-copy a:hover, .cta a:hover { background:var(--gold); }
+
+/* LIGHTBOX */
+.lightbox {
+    display:none; position:fixed; z-index:2000; inset:0; background:rgba(0,0,0,.96);
+    justify-content:center; align-items:center; padding:65px 80px;
+}
+.lightbox.show { display:flex; }
+.lightbox-content { display:flex; flex-direction:column; align-items:center; max-width:100%; max-height:100%; }
+.lightbox img { max-width:100%; max-height:78vh; object-fit:contain; }
+.lightbox-caption { color:white; text-align:center; font-family:'Playfair Display',serif; font-size:20px; margin-top:16px; }
+.lightbox button {
+    position:absolute; border:0; background:rgba(255,255,255,.12); color:white;
+    cursor:pointer; width:48px; height:48px; border-radius:50%; font-size:30px;
+    display:grid; place-items:center; transition:.2s;
+}
+.lightbox button:hover { background:var(--gold); }
+.close-lightbox { top:22px; right:25px; }
+.prev-lightbox { left:22px; top:50%; transform:translateY(-50%); }
+.next-lightbox { right:22px; top:50%; transform:translateY(-50%); }
+
+/* CTA + FOOTER */
+.cta { padding:85px 7%; background:white; text-align:center; }
+.cta h2 { margin-bottom:15px; }
+.cta p { color:var(--grey); margin:0 auto 30px; line-height:1.8; }
+footer { background:var(--dark); color:white; padding:60px 7% 25px; }
+.footer-content { display:grid; grid-template-columns:2fr 1fr 1fr; gap:50px; max-width:1200px; margin:auto; }
+.footer-brand h2 { font-family:'Playfair Display',serif; font-size:28px; margin-bottom:15px; }
+.footer-brand p { color:#aaa69d; font-size:13px; line-height:1.9; max-width:350px; }
+.footer-column h3 { color:var(--gold); font-size:14px; margin-bottom:20px; }
+.footer-column a { display:block; color:#aaa69d; font-size:13px; margin-bottom:13px; }
+.footer-column a:hover { color:white; }
+.footer-bottom { border-top:1px solid #383630; margin-top:45px; padding-top:22px; text-align:center; color:#aaa69d; font-size:12px; }
+
+/* FLOATING WHATSAPP */
+.whatsapp-float {
+    position:fixed; right:24px; bottom:24px; z-index:1500; width:58px; height:58px;
+    border-radius:50%; background:#25D366; color:white; display:flex;
+    align-items:center; justify-content:center; font-size:27px;
+    box-shadow:0 5px 18px rgba(0,0,0,.25); transition:transform .25s;
+}
+.whatsapp-float:hover { transform:translateY(-5px) scale(1.04); }
+.whatsapp-float span { position:absolute; right:68px; background:white; color:var(--dark); padding:9px 13px; border-radius:4px; font-size:12px; font-weight:700; white-space:nowrap; opacity:0; pointer-events:none; transition:.2s; }
+.whatsapp-float:hover span { opacity:1; }
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+    nav { gap:16px; }
+    .featured { margin-left:5%; margin-right:5%; }
+}
+@media(max-width:700px) {
+    header { padding:16px 5%; }
+    .logo { font-size:22px; }
+    .menu-btn { display:block; }
+    nav {
+        display:none; position:absolute; top:100%; left:0; width:100%; background:white;
+        padding:25px 5%; flex-direction:column; align-items:flex-start; gap:22px;
+    }
+    nav.show { display:flex; }
+    .page-hero { min-height:330px; }
+    .intro { padding:62px 7% 35px; }
+    .gallery-section { padding:20px 5% 65px; }
+    .gallery-grid { columns:2 140px; column-gap:12px; }
+    .gallery-item { margin-bottom:12px; }
+    .gallery-item:nth-child(n) { height:240px; }
+    .gallery-overlay { opacity:1; padding:15px; }
+    .gallery-overlay h3 { font-size:18px; }
+    .featured { grid-template-columns:1fr; margin:0 5% 65px; }
+    .featured-image { min-height:260px; height:260px; }
+    .featured-copy { padding:35px 8%; }
+    .footer-content { grid-template-columns:1fr; gap:35px; }
+    .lightbox { padding:65px 15px; }
+    .lightbox img { max-height:70vh; }
+    .prev-lightbox { left:8px; }
+    .next-lightbox { right:8px; }
+    .lightbox button { width:40px; height:40px; font-size:25px; }
+    .whatsapp-float { right:16px; bottom:16px; }
+}
+@media(max-width:380px) {
+    .gallery-grid { columns:1; }
+    .gallery-item:nth-child(n) { height:280px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <a href="index.html" class="logo">THE EVENT <span>HOUSE.</span></a>
+    <button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Open navigation menu">☰</button>
+    <nav id="navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="contacts.html">Contact Us</a>
+        <a href="contacts.html" class="nav-btn">Book an Event</a>
+    </nav>
+</header>
+
+<section class="page-hero">
+    <div class="hero-content">
+        <p>OUR PORTFOLIO</p>
+        <h1>Our <span>Gallery.</span></h1>
+        <div class="subtitle">A collection of beautiful moments and unforgettable celebrations.</div>
+    </div>
+</section>
+
+<section class="intro">
+    <div class="section-label">MOMENTS WORTH REMEMBERING</div>
+    <h2>Every Picture Tells <span>A Story.</span></h2>
+    <p>Explore beautiful moments, creative designs and celebrations that inspire what we do. Every event is unique, and every detail matters.</p>
+</section>
+
+<section class="gallery-section">
+    <div class="filters" aria-label="Filter gallery">
+        <button class="filter-btn active" onclick="filterGallery('all', this)">All Events</button>
+        <button class="filter-btn" onclick="filterGallery('wedding', this)">Weddings</button>
+        <button class="filter-btn" onclick="filterGallery('corporate', this)">Corporate</button>
+        <button class="filter-btn" onclick="filterGallery('birthday', this)">Birthdays</button>
+        <button class="filter-btn" onclick="filterGallery('private', this)">Private Events</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item" data-category="wedding" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Elegant Celebrations">
+            <img src="threef.jpg" alt="Elegant wedding" loading="lazy">
+            <div class="gallery-overlay"><span>WEDDINGS</span><h3>Elegant Celebrations</h3></div>
+        </div>
+        <div class="gallery-item" data-category="corporate" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Professional Gatherings">
+            <img src="twof.jpg" alt="Corporate gathering" loading="lazy">
+            <div class="gallery-overlay"><span>CORPORATE</span><h3>Professional Gatherings</h3></div>
+        </div>
+        <div class="gallery-item" data-category="birthday" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Birthday Moments">
+            <img src="onef.jpg" alt="Birthday party" loading="lazy">
+            <div class="gallery-overlay"><span>BIRTHDAYS</span><h3>Birthday Moments</h3></div>
+        </div>
+        <div class="gallery-item" data-category="private" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Special Occasions">
+            <img src="f8361fcd028f20c14d4858fc132ed8b3.jpg" alt="Private celebration" loading="lazy">
+            <div class="gallery-overlay"><span>PRIVATE EVENTS</span><h3>Special Occasions</h3></div>
+        </div>
+        <div class="gallery-item" data-category="wedding" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Beautiful Receptions">
+            <img src="six.jpg" alt="Wedding reception" loading="lazy">
+            <div class="gallery-overlay"><span>WEDDINGS</span><h3>Beautiful Receptions</h3></div>
+        </div>
+        <div class="gallery-item" data-category="corporate" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Business Events">
+            <img src="ea1481367dac53d83675c7d667ddac67.jpg" alt="Business conference" loading="lazy">
+            <div class="gallery-overlay"><span>CORPORATE</span><h3>Business Events</h3></div>
+        </div>
+        <div class="gallery-item" data-category="birthday" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Celebration Details">
+            <img src="IMG-20261114-WA0019.jpg" alt="Birthday decorations" loading="lazy">
+            <div class="gallery-overlay"><span>BIRTHDAYS</span><h3>Celebration Details</h3></div>
+        </div>
+        <div class="gallery-item" data-category="private" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Intimate Gatherings">
+            <img src="IMG-20261114-WA0017.jpg" alt="Private dinner" loading="lazy">
+            <div class="gallery-overlay"><span>PRIVATE EVENTS</span><h3>Intimate Gatherings</h3></div>
+        </div>
+        <div class="gallery-item" data-category="wedding" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Timeless Details">
+            <img src="seventh.jpg" alt="Wedding details" loading="lazy">
+            <div class="gallery-overlay"><span>WEDDINGS</span><h3>Timeless Details</h3></div>
+        </div>
+
+        <div class="gallery-item" data-category="wedding" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Romantic Wedding Setup">
+            <img src="IMG-20261114-WA0017.jpg" alt="Romantic wedding table and floral setup" loading="lazy">
+            <div class="gallery-overlay"><span>WEDDINGS</span><h3>Romantic Wedding Setup</h3></div>
+        </div>
+        <div class="gallery-item" data-category="corporate" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Corporate Gala">
+            <img src="IMG-20261114-WA0020.jpg" alt="Elegant corporate gala event" loading="lazy">
+            <div class="gallery-overlay"><span>CORPORATE</span><h3>Corporate Gala</h3></div>
+        </div>
+        <div class="gallery-item" data-category="birthday" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Birthday Elegance">
+            <img src="IMG-20261114-WA0009.jpg" alt="Elegant birthday celebration decorations" loading="lazy">
+            <div class="gallery-overlay"><span>BIRTHDAYS</span><h3>Birthday Elegance</h3></div>
+        </div>
+        <div class="gallery-item" data-category="private" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Garden Celebration">
+            <img src="293faa3289572f01d907df3012cc9622.jpg" alt="Outdoor private garden celebration" loading="lazy">
+            <div class="gallery-overlay"><span>PRIVATE EVENTS</span><h3>Garden Celebration</h3></div>
+        </div>
+        <div class="gallery-item" data-category="wedding" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Wedding Table Styling">
+            <img src="IMG-20261114-WA0008.jpg" alt="Wedding reception table styling" loading="lazy">
+            <div class="gallery-overlay"><span>WEDDINGS</span><h3>Wedding Table Styling</h3></div>
+        </div>
+        <div class="gallery-item" data-category="corporate" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Conference Experience">
+            <img src="IMG-20261110-WA0004.jpg" alt="Professional conference venue" loading="lazy">
+            <div class="gallery-overlay"><span>CORPORATE</span><h3>Conference Experience</h3></div>
+        </div>
+        <div class="gallery-item" data-category="birthday" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Milestone Birthday">
+            <img src="seventeen.jpg" alt="Milestone birthday party setup" loading="lazy">
+            <div class="gallery-overlay"><span>BIRTHDAYS</span><h3>Milestone Birthday</h3></div>
+        </div>
+        <div class="gallery-item" data-category="private" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Private Dinner">
+            <img src="IMG-20261114-WA0021.jpg" alt="Private dinner celebration setup" loading="lazy">
+            <div class="gallery-overlay"><span>PRIVATE EVENTS</span><h3>Private Dinner</h3></div>
+        </div>
+        <div class="gallery-item" data-category="wedding" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Floral Wedding Details">
+            <img src="IMG-20261114-WA0019.jpg" alt="Floral wedding decoration details" loading="lazy">
+            <div class="gallery-overlay"><span>WEDDINGS</span><h3>Floral Wedding Details</h3></div>
+        </div>
+        <div class="gallery-item" data-category="corporate" onclick="openLightbox(this)" tabindex="0" role="button" aria-label="View Awards Evening">
+            <img src="IMG-20261114-WA0021.jpg" alt="Corporate awards evening venue" loading="lazy">
+            <div class="gallery-overlay"><span>CORPORATE</span><h3>Awards Evening</h3></div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED INSPIRATION: replace the image and wording with a real event when available -->
+<section class="featured">
+    <div class="featured-image"><img src="six.jpg" alt="Wedding reception inspiration" loading="lazy"></div>
+    <div class="featured-copy">
+        <div class="section-label">FEATURED INSPIRATION</div>
+        <h2>Beautiful Details.<br><span>Lasting Memories.</span></h2>
+        <p>From the atmosphere to the finishing touches, thoughtful details help turn a special occasion into a moment worth remembering. Tell us what you are planning and let's start creating.</p>
+        <a href="contacts.html">PLAN YOUR EVENT →</a>
+    </div>
+</section>
+
+<!-- FULL-SCREEN IMAGE VIEWER -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery image viewer" onclick="backdropClose(event)">
+    <button class="close-lightbox" type="button" onclick="closeLightbox()" aria-label="Close image viewer">&times;</button>
+    <button class="prev-lightbox" type="button" onclick="changeImage(-1)" aria-label="Previous image">&#8249;</button>
+    <div class="lightbox-content">
+        <img id="lightbox-image" src="" alt="Gallery preview">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+    <button class="next-lightbox" type="button" onclick="changeImage(1)" aria-label="Next image">&#8250;</button>
+</div>
+
+<section class="cta">
+    <div class="section-label">YOUR EVENT COULD BE NEXT</div>
+    <h2>Let's Create Something Beautiful.</h2>
+    <p>Have a special occasion coming up? Let us help you make it unforgettable.</p>
+    <a href="contacts.html">BOOK YOUR EVENT →</a>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h2>THE EVENT <span>HOUSE.</span></h2>
+            <p>Your Event, Our Priority. Creating beautiful experiences and unforgettable memories through thoughtful planning and exceptional service.</p>
+        </div>
+        <div class="footer-column">
+            <h3>QUICK LINKS</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contacts.html">Contact</a>
+        </div>
+        <div class="footer-column">
+            <h3>GET IN TOUCH</h3>
+            <a href="contacts.html">Contact Us</a>
+            <a href="contacts.html">Book an Event</a>
+            <a href="https://wa.me/26879679538" target="_blank" rel="noopener">WhatsApp Us</a>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 The Event House. All Rights Reserved.</div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/26879341795?text=Hello%20The%20Event%20House%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener" aria-label="Chat with The Event House on WhatsApp">
+    ☎ <span>Chat with us on WhatsApp</span>
+</a>
+
+<script>
+let visibleItems = [];
+let currentImageIndex = 0;
+
+function toggleMenu() {
+    document.getElementById("navigation").classList.toggle("show");
+}
+
+function filterGallery(category, button) {
+    document.querySelectorAll(".filter-btn").forEach(function(btn) {
+        btn.classList.remove("active");
+    });
+    button.classList.add("active");
+
+    document.querySelectorAll(".gallery-item").forEach(function(item) {
+        const matches = category === "all" || item.dataset.category === category;
+        item.classList.toggle("hidden", !matches);
+    });
+}
+
+function getVisibleItems() {
+    return Array.from(document.querySelectorAll(".gallery-item")).filter(function(item) {
+        return !item.classList.contains("hidden");
+    });
+}
+
+function openLightbox(item) {
+    visibleItems = getVisibleItems();
+    currentImageIndex = visibleItems.indexOf(item);
+    showCurrentImage();
+    document.getElementById("lightbox").classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function showCurrentImage() {
+    if (!visibleItems.length) return;
+    const item = visibleItems[currentImageIndex];
+    const image = item.querySelector("img");
+    const title = item.querySelector("h3");
+    document.getElementById("lightbox-image").src = image.src;
+    document.getElementById("lightbox-image").alt = image.alt;
+    document.getElementById("lightbox-caption").textContent = title.textContent;
+}
+
+function changeImage(direction) {
+    if (!visibleItems.length) return;
+    currentImageIndex = (currentImageIndex + direction + visibleItems.length) % visibleItems.length;
+    showCurrentImage();
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+function backdropClose(event) {
+    if (event.target.id === "lightbox") closeLightbox();
+}
+
+document.querySelectorAll(".gallery-item").forEach(function(item) {
+    item.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openLightbox(item);
+        }
+    });
+});
+
+document.addEventListener("keydown", function(event) {
+    const viewer = document.getElementById("lightbox");
+    if (!viewer.classList.contains("show")) return;
+    if (event.key === "Escape") closeLightbox();
+    if (event.key === "ArrowRight") changeImage(1);
+    if (event.key === "ArrowLeft") changeImage(-1);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,673 @@
+<?php
+require_once "connect.php";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | The Event House</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    gold: #b89555;
+    dark: #171613;
+    cream: #f8f5ef;
+    grey: #77736c;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(cream);
+    color: var(dark);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* NAVIGATION */
+
+header {
+    background: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+nav a {
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(gold);
+}
+
+.nav-btn {
+    background: var(dark);
+    color: white;
+    padding: 13px 22px;
+}
+
+.menu-btn {
+    display: none;
+    font-size: 27px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* HERO */
+
+.page-hero {
+    height: 400px;
+    background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url('seven.jpg?auto=format&fit=crop&w=1800&q=85');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content p {
+    color: #e5c98f;
+    letter-spacing: 5px;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 65px;
+    font-weight: 500;
+}
+
+.hero-content span {
+    color: #e5c98f;
+}
+
+.hero-content .subtitle {
+    color: white;
+    letter-spacing: 1px;
+    margin-top: 18px;
+    font-size: 15px;
+}
+
+/* INTRODUCTION */
+
+.intro {
+    text-align: center;
+    padding: 85px 10% 50px;
+}
+
+.section-label {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 43px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.intro h2 span {
+    color: var(--gold);
+}
+
+.intro p {
+    color: var(--grey);
+    max-width: 750px;
+    margin: auto;
+    line-height: 1.9;
+    font-size: 15px;
+}
+
+/* SERVICES */
+
+.services {
+    padding: 35px 7% 100px;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1250px;
+    margin: auto;
+}
+
+.service-card {
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    transition: 0.4s;
+}
+
+.service-card:hover {
+    transform: translateY(-9px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.service-image {
+    height: 245px;
+    overflow: hidden;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.service-card:hover img {
+    transform: scale(1.08);
+}
+
+.service-content {
+    padding: 30px;
+}
+
+.service-number {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.service-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 12px 0;
+}
+
+.service-content p {
+    color: var(--grey);
+    font-size: 14px;
+    line-height: 1.8;
+    min-height: 75px;
+}
+
+.service-content a {
+    display: inline-block;
+    margin-top: 22px;
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 5px;
+}
+
+/* PROCESS */
+
+.process {
+    background: var(--dark);
+    color: white;
+    padding: 85px 7%;
+    text-align: center;
+}
+
+.process h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 500;
+    margin-bottom: 55px;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.process-item {
+    padding: 20px;
+}
+
+.process-item .number {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.process-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.process-item p {
+    color: #bdb9b0;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* CTA */
+
+.cta {
+    padding: 90px 7%;
+    text-align: center;
+}
+
+.cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 43px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    color: var(--grey);
+    margin-bottom: 30px;
+}
+
+.cta a {
+    display: inline-block;
+    background: var(--dark);
+    color: white;
+    padding: 16px 35px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.cta a:hover {
+    background: var(--gold);
+}
+
+/* FOOTER */
+
+footer {
+    background: #171613;
+    color: white;
+    padding: 60px 7% 25px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-brand h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.footer-brand span {
+    color: var(--gold);
+}
+
+.footer-brand p {
+    color: #aaa69d;
+    font-size: 13px;
+    line-height: 1.9;
+    max-width: 350px;
+}
+
+.footer-column h3 {
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.footer-column a {
+    display: block;
+    color: #aaa69d;
+    font-size: 13px;
+    margin-bottom: 13px;
+}
+
+.footer-column a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    border-top: 1px solid #383630;
+    margin-top: 45px;
+    padding-top: 22px;
+    text-align: center;
+    color: #aaa69d;
+    font-size: 12px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px) {
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 700px) {
+    header {
+        padding: 17px 5%;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 25px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+    }
+
+    nav.show {
+        display: flex;
+    }
+
+    .page-hero {
+        height: 320px;
+    }
+
+    .hero-content h1 {
+        font-size: 43px;
+    }
+
+    .intro {
+        padding: 65px 7% 35px;
+    }
+
+    .intro h2,
+    .cta h2 {
+        font-size: 34px;
+    }
+
+    .services {
+        padding: 25px 6% 70px;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-content p {
+        min-height: auto;
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .process h2 {
+        font-size: 34px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="index.php" class="logo">THE EVENT <span>HOUSE.</span></a>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <nav id="navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contacts.html">Contact Us</a>
+        <a href="contacts.html" class="nav-btn">Book an Event</a>
+    </nav>
+</header>
+
+<section class="page-hero">
+    <div class="hero-content">
+        <p>WHAT WE DO</p>
+        <h1>Our <span>Services.</span></h1>
+        <div class="subtitle">
+            Exceptional planning. Beautiful experiences. Unforgettable moments.
+        </div>
+    </div>
+</section>
+
+<section class="intro">
+    <div class="section-label">OUR EXPERTISE</div>
+    <h2>Creating Moments <span>That Matter.</span></h2>
+
+    <p>
+        Every celebration deserves thoughtful planning and attention to detail.
+        At The Event House, we offer event planning, coordination and styling
+        services designed to turn your ideas into extraordinary experiences.
+    </p>
+</section>
+
+<section class="services">
+    <div class="service-grid">
+
+        <div class="service-card">
+            <div class="service-image">
+                <img src="sixth.jpg?auto=format&fit=crop&w=900&q=85" alt="Wedding event">
+            </div>
+            <div class="service-content">
+                <div class="service-number">01 / WEDDINGS</div>
+                <h3>Wedding Planning</h3>
+                <p>From intimate ceremonies to grand celebrations, we help create a wedding that reflects your love story and personal style.</p>
+                <a href="contacts.html">BOOK THIS SERVICE →</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-image">
+                <img src="eight.jpg?auto=format&fit=crop&w=900&q=85" alt="Corporate event">
+            </div>
+            <div class="service-content">
+                <div class="service-number">02 / CORPORATE</div>
+                <h3>Corporate Events</h3>
+                <p>Professional events, conferences, launches and business gatherings organised with precision and sophistication.</p>
+                <a href="contacts.html">BOOK THIS SERVICE →</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-image">
+                <img src="seventh.jpg?auto=format&fit=crop&w=900&q=85" alt="Birthday celebration">
+            </div>
+            <div class="service-content">
+                <div class="service-number">03 / CELEBRATIONS</div>
+                <h3>Birthday Celebrations</h3>
+                <p>Make every birthday special with creative themes, beautiful decorations and memorable celebrations.</p>
+                <a href="contacts.html">BOOK THIS SERVICE →</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-image">
+                <img src="eighth.jpg?auto=format&fit=crop&w=900&q=85" alt="Private event">
+            </div>
+            <div class="service-content">
+                <div class="service-number">04 / PRIVATE EVENTS</div>
+                <h3>Private Events</h3>
+                <p>From family gatherings to anniversaries and special occasions, we make your private celebrations effortless.</p>
+                <a href="contacts.html">BOOK THIS SERVICE →</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-image">
+                <img src="fouth.jpg?auto=format&fit=crop&w=900&q=85" alt="Event venue">
+            </div>
+            <div class="service-content">
+                <div class="service-number">05 / VENUE HIRE</div>
+                <h3>Venue Hire</h3>
+                <p>Find the right setting for your occasion with venue options suited to your event, guest list and vision.</p>
+                <a href="contacts.html">BOOK THIS SERVICE →</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-image">
+                <img src="nineth.jpg?auto=format&fit=crop&w=900&q=85" alt="Event styling">
+            </div>
+            <div class="service-content">
+                <div class="service-number">06 / STYLING</div>
+                <h3>Event Planning & Styling</h3>
+                <p>Beautiful event designs, carefully selected details and coordinated planning to bring your vision together.</p>
+                <a href="contacts.html">BOOK THIS SERVICE →</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="process">
+    <div class="section-label">HOW WE WORK</div>
+    <h2>From Vision to Celebration.</h2>
+
+    <div class="process-grid">
+
+        <div class="process-item">
+            <div class="number">01</div>
+            <h3>Let's Talk</h3>
+            <p>We listen to your ideas, preferences, event requirements and expectations.</p>
+        </div>
+
+        <div class="process-item">
+            <div class="number">02</div>
+            <h3>Plan</h3>
+            <p>We develop a plan that considers your vision, guest list and budget.</p>
+        </div>
+
+        <div class="process-item">
+            <div class="number">03</div>
+            <h3>Create</h3>
+            <p>We coordinate the details and prepare everything for your special day.</p>
+        </div>
+
+        <div class="process-item">
+            <div class="number">04</div>
+            <h3>Celebrate</h3>
+            <p>You enjoy the occasion while we focus on making everything run smoothly.</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="cta">
+    <div class="section-label">LET'S MAKE IT HAPPEN</div>
+    <h2>Have an Event in Mind?</h2>
+    <p>Tell us what you are planning. We'd love to help bring it to life.</p>
+    <a href="contact.php">START PLANNING YOUR EVENT →</a>
+</section>
+
+<footer>
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            <h2>THE EVENT <span>HOUSE.</span></h2>
+            <p>
+                Your Event, Our Priority.
+                Creating beautiful experiences and unforgettable memories
+                through thoughtful planning and exceptional service.
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h3>QUICK LINKS</h3>
+            <a href="index.php">Home</a>
+            <a href="about.php">About Us</a>
+            <a href="services.php">Services</a>
+            <a href="gallery.php">Gallery</a>
+            <a href="contact.php">Contact</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>GET IN TOUCH</h3>
+            <a href="contact.php">Contact Us</a>
+            <a href="contact.php">Book an Event</a>
+            <a href="https://wa.me/26879679538">WhatsApp Us</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © <?php echo date("Y"); ?> The Event House. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navigation").classList.toggle("show");
+}
+</script>
+
+</body>
+
+</html>

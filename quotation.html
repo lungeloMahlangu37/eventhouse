@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request a Quotation | The Event House</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#b89555;--dark:#171613;--cream:#f8f5ef;--grey:#77736c;--white:#fff}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark)}
+a{text-decoration:none;color:inherit}
+
+/* NAVIGATION - MATCHES THE EVENT HOUSE PAGES */
+header{background:white;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;box-shadow:0 2px 15px rgba(0,0,0,.06)}
+.logo{font-family:'Playfair Display',serif;font-size:27px;font-weight:700}
+.logo span{color:var(--gold)}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-size:13px;font-weight:600;transition:.3s}
+nav a:hover,nav a.active{color:var(--gold)}
+.nav-btn{background:var(--dark);color:white;padding:13px 22px}
+.menu-btn{display:none;font-size:27px;background:none;border:none;cursor:pointer}
+
+/* HERO - SAME IMAGE, HEIGHT AND TYPOGRAPHY */
+.hero{height:350px;background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),url('seven.jpg') center/cover;display:flex;justify-content:center;align-items:center;text-align:center;color:white;padding:20px}
+.hero p{color:#e5c98f;font-size:12px;letter-spacing:5px;margin-bottom:18px}
+.hero h1{font-family:'Playfair Display',serif;font-size:58px;font-weight:500}
+.hero h1 span{color:#e5c98f}
+.hero .subtitle{margin-top:15px;font-size:14px}
+
+/* INTRO */
+.intro{text-align:center;padding:70px 8% 40px}
+.section-label{color:var(--gold);letter-spacing:4px;font-size:12px;font-weight:700;margin-bottom:15px}
+.intro h2{font-family:'Playfair Display',serif;font-size:40px;font-weight:500;margin-bottom:15px}
+.intro h2 span{color:var(--gold)}
+.intro p{color:var(--grey);line-height:1.8;max-width:700px;margin:auto;font-size:14px}
+
+/* QUOTATION CONTENT */
+.quote-section{padding:40px 7% 100px}
+.quote-container{max-width:1250px;margin:auto;display:grid;grid-template-columns:.8fr 1.5fr;gap:40px;align-items:start}
+.quote-info{background:var(--dark);color:white;padding:45px 35px}
+.quote-info h2{font-family:'Playfair Display',serif;font-size:30px;margin-bottom:15px}
+.quote-info>p{color:#c2beb6;font-size:14px;line-height:1.8;margin-bottom:35px}
+.info-item{margin-bottom:28px}
+.info-item h3{color:var(--gold);font-size:13px;margin-bottom:9px;letter-spacing:.5px}
+.info-item p{color:#d6d2cb;font-size:14px;line-height:1.8}
+.whatsapp-link{display:inline-block;margin-top:13px;background:#218c55;padding:13px 20px;color:white;font-size:12px;font-weight:700}
+.steps{border-top:1px solid #ffffff30;padding-top:22px;margin-top:25px}
+.steps p{margin-bottom:12px}
+.steps strong{color:var(--gold)}
+
+.booking-form{background:white;padding:45px;box-shadow:0 8px 35px rgba(0,0,0,.05)}
+.booking-form h2{font-family:'Playfair Display',serif;font-size:32px;margin-bottom:10px}
+.form-description{color:var(--grey);font-size:14px;margin-bottom:30px;line-height:1.7}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-group{margin-bottom:22px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:9px}
+.required{color:#c0392b}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:14px;border:1px solid #dedbd4;background:#fdfcf9;font-family:inherit;font-size:13px;color:var(--dark);outline:none;transition:.3s;border-radius:0}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
+.form-group textarea{height:120px;resize:vertical}
+.service-options{display:grid;grid-template-columns:1fr 1fr;gap:13px 18px;padding:5px 0 2px}
+.service-option{display:flex;align-items:center;gap:9px;font-size:13px;color:#555}
+.service-option input{width:16px;height:16px;accent-color:var(--gold)}
+.submit-btn{width:100%;border:none;background:var(--dark);color:white;padding:17px;font-size:13px;font-weight:700;letter-spacing:.4px;cursor:pointer;transition:.3s}
+.submit-btn:hover{background:var(--gold)}
+.form-note{color:var(--grey);font-size:11px;margin-top:15px;line-height:1.7;text-align:center}
+
+/* FOOTER - MATCHES GALLERY AND CONTACT PAGES */
+footer{background:var(--dark);color:white;padding:60px 7% 25px}
+.footer-content{display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px;max-width:1200px;margin:auto}
+.footer-brand h2{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:15px}
+.footer-brand span{color:var(--gold)}
+.footer-brand p{color:#aaa69d;font-size:13px;line-height:1.9;max-width:350px}
+.footer-column h3{color:var(--gold);font-size:14px;margin-bottom:20px}
+.footer-column a{display:block;color:#aaa69d;font-size:13px;margin-bottom:13px}
+.footer-column a:hover{color:white}
+.footer-bottom{border-top:1px solid #383630;margin-top:45px;padding-top:22px;text-align:center;color:#aaa69d;font-size:12px}
+
+/* RESPONSIVE */
+@media(max-width:900px){.quote-container{grid-template-columns:1fr}}
+@media(max-width:700px){
+ header{padding:17px 5%}.logo{font-size:22px}.menu-btn{display:block}
+ nav{display:none;position:absolute;top:70px;left:0;width:100%;background:white;padding:25px;flex-direction:column;align-items:flex-start;gap:22px}
+ nav.show{display:flex}.hero{height:300px}.hero h1{font-size:42px}
+ .intro{padding:60px 7% 35px}.intro h2{font-size:32px}
+ .quote-section{padding:25px 5% 65px}.quote-info,.booking-form{padding:30px 22px}
+ .form-row{grid-template-columns:1fr;gap:0}.service-options{grid-template-columns:1fr 1fr}
+ .footer-content{grid-template-columns:1fr;gap:35px}
+}
+@media(max-width:420px){.service-options{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">THE EVENT <span>HOUSE.</span></a>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <nav id="navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contacts.html">Contact Us</a>
+        <a href="quotation.html" class="nav-btn active">Request a Quote</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div>
+        <p>LET'S CREATE SOMETHING SPECIAL</p>
+        <h1>Request a <span>Quotation.</span></h1>
+        <div class="subtitle">Tell us about your event. Let's make it unforgettable.</div>
+    </div>
+</section>
+
+<section class="intro">
+    <div class="section-label">PLAN YOUR SPECIAL OCCASION</div>
+    <h2>Let's Start <span>Planning.</span></h2>
+    <p>Whether you are planning a wedding, corporate function, birthday celebration or private event, tell us what you have in mind. Complete the form and send your enquiry directly to our consultant through WhatsApp.</p>
+</section>
+
+<section class="quote-section">
+ <div class="quote-container">
+  <aside class="quote-info">
+    <h2>Let's Talk About Your Event</h2>
+    <p>We would love to hear about your plans. Share your requirements and our consultant will help you with the next steps.</p>
+    <div class="info-item">
+      <h3>OUR BUSINESS</h3>
+      <p>The Event House</p><p>Eswatini</p>
+    </div>
+    <div class="info-item">
+      <h3>WHATSAPP CONSULTANT</h3>
+      <p>+268 7934 1795</p>
+      <a class="whatsapp-link" href="https://wa.me/26879341795" target="_blank">CHAT ON WHATSAPP</a>
+    </div>
+    <div class="steps">
+      <div class="info-item">
+        <h3>HOW IT WORKS</h3>
+        <p><strong>01.</strong> Complete the quotation form.</p>
+        <p><strong>02.</strong> Send your enquiry on WhatsApp.</p>
+        <p><strong>03.</strong> Our consultant will contact you.</p>
+      </div>
+    </div>
+  </aside>
+
+  <div class="booking-form">
+    <h2>Event Quotation Form</h2>
+    <p class="form-description">Please provide your event details below. Fields marked with * are required.</p>
+    <form id="quoteForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name <span class="required">*</span></label>
+          <input id="name" type="text" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number <span class="required">*</span></label>
+          <input id="phone" type="tel" placeholder="Enter your phone number" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input id="email" type="email" placeholder="mphomatsebula18@gmail.com">
+        </div>
+        <div class="form-group">
+          <label for="event">Type of Event <span class="required">*</span></label>
+          <select id="event" required>
+            <option value="">Select event type</option>
+            <option>Wedding</option><option>Corporate Event</option>
+            <option>Birthday Celebration</option><option>Private Event</option>
+            <option>Graduation</option><option>Baby Shower</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="date">Event Date <span class="required">*</span></label>
+          <input id="date" type="date" required>
+        </div>
+        <div class="form-group">
+          <label for="guests">Expected Number of Guests <span class="required">*</span></label>
+          <input id="guests" type="number" min="1" placeholder="e.g. 100" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="venue">Event Location <span class="required">*</span></label>
+          <input id="venue" type="text" placeholder="Where will the event take place?" required>
+        </div>
+        <div class="form-group">
+          <label for="budget">Estimated Budget</label>
+          <select id="budget">
+            <option value="">Select your budget</option>
+            <option>E1,000 - E5,000</option><option>E5,000 - E10,000</option>
+            <option>E10,000 - E25,000</option><option>E25,000 - E50,000</option>
+            <option>E50,000 - E100,000</option><option>Above E100,000</option>
+            <option>Not yet decided</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Services Required</label>
+        <div class="service-options">
+          <label class="service-option"><input type="checkbox" name="services" value="Venue styling and decor"> Venue styling & decor</label>
+          <label class="service-option"><input type="checkbox" name="services" value="Furniture and equipment"> Furniture & equipment</label>
+          <label class="service-option"><input type="checkbox" name="services" value="Catering"> Catering</label>
+          <label class="service-option"><input type="checkbox" name="services" value="Photography and video"> Photography & video</label>
+          <label class="service-option"><input type="checkbox" name="services" value="Sound and entertainment"> Sound & entertainment</label>
+          <label class="service-option"><input type="checkbox" name="services" value="Full event planning"> Full event planning</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="details">Additional Information</label>
+        <textarea id="details" placeholder="Tell us about your theme, colours, preferences or special requirements..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">SEND QUOTATION REQUEST VIA WHATSAPP →</button>
+      <p class="form-note">WhatsApp will open with your enquiry prepared. Please press Send in WhatsApp to deliver your message. Sending an enquiry does not confirm a booking.</p>
+    </form>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <div class="footer-content">
+  <div class="footer-brand">
+    <h2>THE EVENT <span>HOUSE.</span></h2>
+    <p>Your Event, Our Priority. Creating beautiful experiences and unforgettable memories through thoughtful planning and exceptional service.</p>
+  </div>
+  <div class="footer-column">
+    <h3>QUICK LINKS</h3>
+    <a href="index.html">Home</a><a href="about.html">About Us</a>
+    <a href="services.html">Services</a><a href="gallery.html">Gallery</a>
+    <a href="contacts.html">Contact</a>
+  </div>
+  <div class="footer-column">
+    <h3>GET IN TOUCH</h3>
+    <a href="contacts.html">Contact Us</a>
+    <a href="quotation.html">Request a Quote</a>
+    <a href="https://wa.me/26879341795">WhatsApp Us</a>
+  </div>
+ </div>
+ <div class="footer-bottom">© 2026 The Event House. All Rights Reserved.</div>
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("navigation").classList.toggle("show");
+}
+
+const dateInput = document.getElementById("date");
+const now = new Date();
+const today = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split("T")[0];
+dateInput.min = today;
+
+document.getElementById("quoteForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const services = Array.from(document.querySelectorAll('input[name="services"]:checked'))
+    .map(item => item.value);
+
+  const message = [
+    "Hello The Event House! I would like to request a quotation.",
+    "",
+    "CUSTOMER DETAILS",
+    "Name: " + document.getElementById("name").value.trim(),
+    "Phone: " + document.getElementById("phone").value.trim(),
+    "Email: " + (document.getElementById("email").value.trim() || "Not provided"),
+    "",
+    "EVENT DETAILS",
+    "Event type: " + document.getElementById("event").value,
+    "Event date: " + document.getElementById("date").value,
+    "Number of guests: " + document.getElementById("guests").value,
+    "Location: " + document.getElementById("venue").value.trim(),
+    "Estimated budget: " + (document.getElementById("budget").value || "Not specified"),
+    "Services required: " + (services.length ? services.join(", ") : "Not specified"),
+    "Additional information: " + (document.getElementById("details").value.trim() || "None"),
+    "",
+    "Please contact me to discuss my event quotation. Thank you."
+  ].join("\n");
+
+  window.open("https://wa.me/26879341795?text=" + encodeURIComponent(message), "_blank");
+});
+</script>
+</body>
+</html>
